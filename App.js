@@ -19,8 +19,8 @@ import {
 const App: () => React$Node = () => {
   return (
     <>
-      <View styles={styles.Container}>
-        <Text styles={styles.welcome}>Welcome To React Native !</Text>
+      <View style={styles.Container}>
+        <Text style={styles.welcome}>Welcome To React Native !</Text>
       </View>
     </>
   );
