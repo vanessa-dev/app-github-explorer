@@ -16,7 +16,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+import './config/ReactotronConfig';
+
+const App = () => {
   return (
     <>
       <View style={styles.Container}>
