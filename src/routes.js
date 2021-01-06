@@ -9,7 +9,7 @@ const Routes = ()=>{
   return(<>
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen  name="Main" component={Main}/>
+      <Stack.Screen  name="Main" component={Main} options={{title:'Principal'}}/>
       <Stack.Screen  name="User" component={User}/>
     </Stack.Navigator>
   </NavigationContainer>
