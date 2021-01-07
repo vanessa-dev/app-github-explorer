@@ -9,7 +9,7 @@ export default class Main extends Component {
     newUser:'',
     users : [],
   }
-  handleAddUser =  async () =>{
+   async handleAddUser (){
     const{users,newUser} = this.state;
     const response = await api.get(`/users/${newUser}`);
     const data ={
@@ -26,8 +26,8 @@ export default class Main extends Component {
     return (
     <Container>
       <Form>
-        <Input autoCorrect={false} value={newUser} onChangeText={text => this.setState({newUser: text})} retornKeyType="send" onSubmitEditing={handleAddUser} autoCapitalize="none" placeholder="Adicionar Usúario"/>
-        <SubmitButton onPress={handleAddUser}>
+        <Input autoCorrect={false} value={newUser} onChangeText={text => this.setState({newUser: text})} retornKeyType="send" onSubmitEditing={this.handleAddUser.bind(this)} autoCapitalize="none" placeholder="Adicionar Usúario"/>
+        <SubmitButton onPress={this.handleAddUser.bind(this)}>
         <Icon name="add" size={20} color="#FFF" />
       </SubmitButton>
       </Form>
