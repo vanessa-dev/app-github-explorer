@@ -13,8 +13,8 @@ const Routes = ()=>{
   return(<>
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen  name="Main" component={Main} options={{title:'Usuário',headerTintColor:'#fff',headerStyle:{backgroundColor:'#FB2'}}}/>
-      <Stack.Screen  name="User" component={User}/>
+      <Stack.Screen  name="Main" component={Main} options={{title:'Usuários',headerTintColor:'#fff',headerStyle:{backgroundColor:'#FB2'}}}/>
+      <Stack.Screen  name="User" component={User} options={{title:'User',headerTintColor:'#fff',headerStyle:{backgroundColor:'#FB2'}}}/>
     </Stack.Navigator>
   </NavigationContainer>
   </>);
