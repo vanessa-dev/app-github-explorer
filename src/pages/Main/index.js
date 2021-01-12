@@ -31,6 +31,7 @@ export default class Main extends Component {
       avatar: response.data.avatar_url,
     }
     this.setState({users:[...users,data],newUser:''});
+    console.tron.log(users);
     Keyboard.dismiss();
   }
   render(){
@@ -46,16 +47,16 @@ export default class Main extends Component {
       <List
        data={users}
        keyExtractor={user => user.login}
-       renderItem ={(item)=>{
-          <User>
-            <Avatar source={{uri:item.avatar}}></Avatar>
+       renderItem ={({item})=>(
+        <User>
+           <Avatar source={{uri:item.avatar}}></Avatar>
             <Name>{item.name}</Name>
             <Bio>{item.bio}</Bio>
             <ProfileButton onPress={()=>{}}>
               <ProfileButtonText>Ver Perfil</ProfileButtonText>
             </ProfileButton>
           </User>
-       }}
+       )}
       />
 
     </Container>
