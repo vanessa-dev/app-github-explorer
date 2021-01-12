@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Keyboard,View , Text} from 'react-native';
+import { Keyboard,ActivityIndicator,View , Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
@@ -20,9 +20,11 @@ export default class Main extends Component {
   state ={
     newUser:'',
     users : [],
+    loading:false,
   }
    async handleAddUser (){
     const{users,newUser} = this.state;
+    this.setState({loading:true});
     const response = await api.get(`/users/${newUser}`);
     const data ={
       name: response.data.name,
@@ -30,18 +32,19 @@ export default class Main extends Component {
       bio: response.data.bio,
       avatar: response.data.avatar_url,
     }
-    this.setState({users:[...users,data],newUser:''});
+    this.setState({users:[...users,data],newUser:'',loading:false});
     console.tron.log(users);
     Keyboard.dismiss();
   }
   render(){
-    const {users,newUser} = this.state;
+    const {users,newUser,loading} = this.state;
     return (
     <Container>
       <Form>
         <Input autoCorrect={false} value={newUser} onChangeText={text => this.setState({newUser: text})} retornKeyType="send" onSubmitEditing={this.handleAddUser.bind(this)} autoCapitalize="none" placeholder="Adicionar Usúario"/>
         <SubmitButton onPress={this.handleAddUser.bind(this)}>
-        <Icon name="add" size={20} color="#FFF" />
+          {loading ? <ActivityIndicator color="#FFF"/> :<Icon name="add" size={20} color="#FFF" /> }
+
       </SubmitButton>
       </Form>
       <List
