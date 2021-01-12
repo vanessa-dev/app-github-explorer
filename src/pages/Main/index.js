@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Keyboard,ActivityIndicator,View , Text} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
@@ -22,7 +23,20 @@ export default class Main extends Component {
     users : [],
     loading:false,
   }
-   async handleAddUser (){
+  async componentDidMount(){
+    const users = await AsyncStorage.getItem('users');
+    if(users){
+      this.setState({users: JSON.parse(users)});
+    }
+  }
+  componentDidUpdate(_,prevState){
+    const { users} = this.state;
+    if(prevState != users){
+      AsyncStorage.setItem('users',JSON.stringify(users));
+
+    }
+  }
+  async handleAddUser (){
     const{users,newUser} = this.state;
     this.setState({loading:true});
     const response = await api.get(`/users/${newUser}`);
