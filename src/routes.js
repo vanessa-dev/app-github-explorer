@@ -12,9 +12,18 @@ if (__DEV__) {
 const Routes = ()=>{
   return(<>
   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen  name="Main" component={Main} options={{title:'Usuários',headerTintColor:'#fff',headerTitleAlign: 'center',headerStyle:{backgroundColor:'#FB2'}}}/>
-      <Stack.Screen  name="User" component={User} options={{title:'User',headerTintColor:'#fff',headerTitleAlign: 'center',headerStyle:{backgroundColor:'#FB2'}}}/>
+    <Stack.Navigator screenOptions={{
+        headerStyle: {
+          backgroundColor: '#FB2',
+        },
+        headerTitleAlign: 'center',
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen  name="Main" component={Main} options={{title:'Usuários'}}/>
+      <Stack.Screen  name="User" component={User} options={({ route }) => ({ title: route.params.user.name,})}/>
     </Stack.Navigator>
   </NavigationContainer>
   </>);
