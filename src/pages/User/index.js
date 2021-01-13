@@ -17,9 +17,7 @@ export default class User extends Component {
   async componentDidMount(){
     const {user} =  this.props.route.params;
     const response = await api.get(`/users/${user.login}/starred`);
-    console.tron.log(response);
     this.setState({stars: response.data});
-    console.tron.log(this.state.stars);
 
   }
   render( ){
